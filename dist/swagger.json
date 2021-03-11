@@ -1,0 +1,131 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Indego Backend",
+        "description": "Indego is Philadelphia's bike-sharing program, with many bike stations in the city. The Open Weather Map API provides a realtime snapshot of the current weather in a given city. "
+    },
+    "servers": [
+        {
+            "url": "/",
+            "description": "Local Dev, or from Heroku"
+        }
+    ],
+    "tags": [
+        {
+            "name": "generateStation",
+            "description": "Store data from Indego"
+        },
+        {
+            "name": "getStationAndWeatherData",
+            "description": "Snapshot of all stations at a specified time"
+        },
+        {
+            "name": "getStationAndWeatherDataByKioskId",
+            "description": "Snapshot of one station at a specific time"
+        }
+    ],
+    "paths": {
+        "/generateStation": {
+            "post": {
+                "tags": [
+                    "generateStation"
+                ],
+                "summary": "downloads fresh data from Indego GeoJSON station status API and stores it inside MongoDB.",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/getStationAndWeatherData": {
+            "get": {
+                "tags": [
+                    "getStationAndWeatherData"
+                ],
+                "summary": "Open Weather Map for all stations at specified time",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/getStationAndWeatherDataByKioskId": {
+            "get": {
+                "tags": [
+                    "getStationAndWeatherDataByKioskId"
+                ],
+                "summary": "Open Weather Map for all stations at specified time",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {}
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Cat": {
+            "type": "object",
+            "properties": {
+                "genus": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
